@@ -22,5 +22,14 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
     Route::post('/store', [PointController::class, 'store'])->name('store');
+    Route::get('/map', [PointController::class, 'index'])->name('map');
+    Route::get('/gestion', [PointController::class, 'gestion'])->name('gestion');
+    
+    Route::delete('/delete/{id}', [PointController::class, 'destroy'])->name('delete');
+
+    Route::put('/update/{id}', [PointController::class, 'update'])->name('update');
+
+    Route::get('/edit/{id}', [PointController::class, 'edit'])->name('edit');
 });
