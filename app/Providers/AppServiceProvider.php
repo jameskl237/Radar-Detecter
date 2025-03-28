@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::redirect('/home', '/');
+        Route::redirect('/home', '/gestion');
         Route::redirect('/dashboard', '/gestion');
     }
 }

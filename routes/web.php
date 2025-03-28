@@ -14,7 +14,16 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', [PointController::class, 'index'])->name('map');
+Route::get('/', function () {
+    return Inertia::render('Map', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+// Route::get('/', [PointController::class, 'index'])->name('map');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
