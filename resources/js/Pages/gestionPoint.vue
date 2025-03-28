@@ -1,8 +1,8 @@
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Gestion">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Gestion des points
             </h2>
         </template>
 
@@ -12,9 +12,9 @@
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-6">
                             <h5 class="text-xl font-semibold">Points Géographiques</h5>
-                            <button @click="addPoint" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
+                            <a :href=" route('addPoint') " class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
                                 <i class="fas fa-add mr-2"></i> Ajouter un point
-                            </button>
+                            </a>
                         </div>
 
                         <div class="mb-6">
@@ -76,7 +76,7 @@ export default {
         const search = ref(props.filters.search || '');
 
         const addPoint = () => {
-            router.get(route('dashboard')); 
+            router.get(route('addPoint')); 
         };
 
         const onSearch = () => {

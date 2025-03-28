@@ -21,12 +21,14 @@ class PointController extends Controller
             ]);
     
             Point::create($validated);
-            
+            // dd($validated);
             return Redirect::route('gestion')->with('success', 'Point ajouté avec succès');
             
         } catch (ValidationException $e) {
+            dd($e->errors());
             return Redirect::back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return Redirect::back()->withErrors(['general' => 'Une erreur est survenue. Veuillez réessayer.'])->withInput();
         }
     }
@@ -35,7 +37,7 @@ class PointController extends Controller
     {
         $points = Point::all();
 
-        return Inertia::render('map', [
+        return Inertia::render('Map', [
             'points' => $points,
         ]);
     }
@@ -50,7 +52,7 @@ class PointController extends Controller
 
         $points = $query->get();
 
-        return Inertia::render('gestionPoint', [
+        return Inertia::render('GestionPoint', [
             'points' => $points,
             'filters' => $request->only(['search']),
         ]);
@@ -92,5 +94,10 @@ class PointController extends Controller
         return Inertia::render('update', [
             'point' => Point::findOrFail($id),
         ]);
+    }
+
+    public function addPoint()
+    {
+        return Inertia::render('AddPoint');
     }
 }
