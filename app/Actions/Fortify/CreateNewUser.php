@@ -32,4 +32,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
     }
+    public function redirectTo()
+    {
+        return route('gestion');
+    }
 }
